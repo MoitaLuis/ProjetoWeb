@@ -16,8 +16,27 @@ header {
 #menu {
   height: 100%;
   width: 44px;
+  cursor: pointer;
+}
+#menu:hover{
+  background-color: #e4e6e8;
+}
+.bar1 {
+  margin-top:15px;
+  margin-left:10px;
+  width: 25px;
+  height: 3px;
+  background-color: rgb(151, 151, 151);
+}
+.bar2, .bar3{
+  margin-top:4px;
+  margin-left:10px;
+  width: 25px;
+  height: 3px;
+  background-color: rgb(151, 151, 151);
 }
 #logo {
+  cursor:pointer;
   width: 12%;
   height: 100%;
   padding-left: 0.54%;
@@ -26,6 +45,9 @@ header {
 
   background-repeat: no-repeat;
   background-position: center;
+}
+#logo:hover{
+  background-color: #e4e6e8;
 }
 #logo img {
   width: 150px;
@@ -40,6 +62,26 @@ header {
   padding-left: 0.94%;
   background-color: black;
 }
+#searchcontainer{
+  flex-shrink: 10000;
+  box-sizing: border-box;
+  padding-left: 12px;
+  padding-right: 12px;
+  align-self: center;
+}
+.inputicon{
+  position: absolute;
+  color: #bbc0c4;
+  fill:currentColor;
+  right: auto;
+  left: .7em;
+  top: 50%;
+  margin-top: -9px;
+  pointer-events: none;
+}
+.posrelative{
+  position: relative;
+}
 input {
   position: relative;
   width: 665px;
@@ -48,10 +90,73 @@ input {
   padding-right: 9.1px;
   padding-top: 7.8px;
   padding-bottom: 7.8px;
+  border: 1px solid #bbc0c4;
+  border-radius: 3px;
 }
 #lista {
   width: 20.1%;
   height: 100%;
+}
+.rightol{
+  height: 100% ;
+  overflow-x: auto;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+.rightli{
+  padding-left: 4px;
+  padding-right: 8px;
+  white-space: nowrap;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.login{
+  color: #3982c0;
+  background-color: #e1ecf4;
+  position: relative;
+  display: inline-block;
+  padding: .8em;
+  border: 1px solid #7aa7c7;
+  border-radius: 3px;
+  outline: none;
+  font-size: 13px;
+  font-weight: normal;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+.login:hover{
+  background-color: #b3d3ea;
+}
+.signup{
+  color: white;
+  background-color: #0095ff;
+  position: relative;
+  display: inline-block;
+  padding: .8em;
+  border: 1px solid #0095ff;
+  border-radius: 3px;
+  outline: none;
+  font-size: 13px;
+  font-weight: normal;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+.signup:hover{
+  background-color: #0077cc;
 }
 ol {
   list-style: none;

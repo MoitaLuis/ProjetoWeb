@@ -1,5 +1,7 @@
 body {
   margin: 0;
+  background-color: #f0f0f0;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 }
 header {
   top: 0px;
@@ -11,7 +13,7 @@ header {
   border-top: #f48024;
   border-top-width: 3px;
   border-top-style: solid;
-  box-shadow: 0 1px 0 rgba(12, 13, 14, 0.15);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 1px 4px rgba(12, 13, 14, 0.15);
 }
 #menu {
   height: 100%;
@@ -196,36 +198,36 @@ a {
   padding: 10% 20%;
   border-radius: 100px;
 }
-.xmobile{
+.xmobile {
   visibility: visible;
 }
-.vmobile{
+.vmobile {
   visibility: collapse;
 }
 
-@media only screen and (max-width: 500px){
-  .xmobile{
-    visibility:collapse;
+@media only screen and (max-width: 500px) {
+  .xmobile {
+    visibility: collapse;
   }
-  .vmobile{
+  .vmobile {
     visibility: visible;
   }
-  .rightcontainer{
-    padding-left:10%;
+  .rightcontainer {
+    padding-left: 10%;
   }
-  .search-mobile{
+  .search-mobile {
     padding-top: 50%;
     padding-left: 25%;
     color: #bbc0c4;
     cursor: pointer;
     fill: currentColor;
-    }
+  }
   #menu {
     height: 100%;
     width: 10%;
     cursor: pointer;
   }
-  .fixprod{
+  .fixprod {
     width: 100%;
     height: 100%;
   }
@@ -242,15 +244,102 @@ a {
     align-items: center;
     box-sizing: border-box;
   }
-  .searchdiv{
+  .searchdiv {
     width: 10%;
     height: 100%;
-    cursor:pointer;
+    cursor: pointer;
   }
-  .searchdiv:hover{
+  .searchdiv:hover {
     background-color: #e4e6e8;
   }
-  .fixprod{
+  .fixprod {
     padding-left: 20%;
   }
+}
+/**************************************************main***************************************************/
+#main {
+  background-color: #f0f0f0;
+}
+#main-logo {
+  background-image: url("assets/mobile-logoresized.png");
+  position: relative;
+  width: 64px;
+  height: 64px;
+  background-repeat: no-repeat;
+  left: 47.5%;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+#linked-login {
+  width: 280px;
+  height: 135px;
+  position: relative;
+  left: 39%;
+  display: flex;
+  flex-direction: column;
+}
+.box {
+  width: 100%;
+  height: 25%;
+  flex-grow: 1;
+  margin-bottom: 5px;
+  background-color: blue;
+  border-radius: 5px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #d7d7d7;
+}
+#google-logo {
+  background-image: url("assets/g-removebg-preview(1).png");
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+  background-repeat: no-repeat;
+  float: left;
+  margin-top: 12.5px;
+  position: relative;
+  left: 25%;
+}
+#git-logo {
+  background-image: url("assets/git-logo-refeito.png");
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+  background-repeat: no-repeat;
+  float: left;
+  margin-top: 12.5px;
+  position: relative;
+  left: 27%;
+}
+#face-logo {
+  background-image: url("assets/face_blue.png");
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+  background-repeat: no-repeat;
+  float: left;
+  margin-top: 12.5px;
+  position: relative;
+  left: 27%;
+}
+.login-p {
+  display: flex;
+  margin-top: 12.5px;
+  left: 30%;
+  position: relative;
+  left: 20%;
+}
+#google {
+  background-color: #fff;
+  font-size: 13px;
+}
+#github {
+  background-color: #2f3337;
+  font-size: 13px;
+  color: #fff;
+}
+#facebook {
+  background-color: #385499;
+  font-size: 13px;
+  color: #fff;
 }

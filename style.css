@@ -266,15 +266,13 @@ a {
   width: 64px;
   height: 64px;
   background-repeat: no-repeat;
-  left: 47.5%;
-  margin-top: 12px;
-  margin-bottom: 12px;
+  margin: auto;
 }
 #linked-login {
   width: 280px;
   height: 135px;
   position: relative;
-  left: 39%;
+  margin: auto;
   display: flex;
   flex-direction: column;
 }
@@ -347,7 +345,7 @@ a {
   width: 232px;
   height: 184px;
   position: relative;
-  left: 39%;
+  margin: auto;
   background-color: #fff;
   border-radius: 3%;
   padding: 24px;

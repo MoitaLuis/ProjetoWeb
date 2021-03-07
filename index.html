@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header>
+    <div id="menu">
+      <div class="bar1"></div>
+      <div class="bar2"></div>
+      <div class="bar3"></div>
+    </div>
+    <div class="logo xmobile"><img src="assets/stack-overflow.png"> </div>
+    <div class="logo vmobile"><img src="assets/mobile-logo.png"> </div>
+    <div id="lista">
+      <ol>
+        <li class="xmobile" id="about"><a href="https://stackoverflow.com/company">About</a></li>
+        <li id="products"><a class="fixprod" href="#">Products</a></li>
+        <li class="xmobile" id="forteams"><a href="https://stackoverflow.com/teams">For Teams</a></li>
+      </ol>
+    </div>
+    <div class="searchdiv vmobile">
+      <svg aria-hidden="true" class="search-mobile" width="18" height="18" viewBox="0 0 18 18">
+        <path d="M18 16.5l-5.14-5.18h-.35a7 7 0 10-1.19 1.19v.35L16.5 18l1.5-1.5zM12 7A5 5 0 112 7a5 5 0 0110 0z"></path>
+      </svg>
+    </div>
+    <form class="xmobile" id="searchcontainer">
+      <div class="posrelative">
+        <input type="text" placeholder="Search..." maxlength="240">
+        <svg aria-hidden="true" class="inputicon" width="18" height="18" viewBox="0 0 18 18">
+          <path d="M18 16.5l-5.14-5.18h-.35a7 7 0 10-1.19 1.19v.35L16.5 18l1.5-1.5zM12 7A5 5 0 112 7a5 5 0 0110 0z"></path>
+        </svg>
+      </div>
+    </form>
+    <ol class="rightol xmobile">
+      <li class="rightli">
+        <a class="login">Log in</a>
+        <a class="signup">Sign up</a>
+      </li>
+    </ol>
+    <ol class="mobileol vmobile">
+      <li class="rightli">
+        <a class="login">Log in</a>
+        <a class="signup">Sign up</a>
+      </li>
+    </ol>
+  </header>
+  <div id="main">
+    <div id="main-logo"></div>
+    <div id="linked-login">
+      <div class="box" id="google">
+        <div id="google-logo"></div>
+        <p class="login-p">Log in with Google</p>
+      </div>
+      <div class="box" id="github">
+        <div id="git-logo"></div>
+        <p class="login-p">Log in with GitHub</p>
+      </div>
+      <div class="box" id="facebook">
+        <div id="face-logo"></div>
+        <p class="login-p">Log in with Facebook</p>
+      </div>
+    </div>
+    <div></div>
+    <p>Don’t have an account?</p><span>Sign up</span>
+    <p>Are you an employer?</p><span>Sign up on Talent </span>
+    <div id="talent"></div>
+  </div>
+</body>
+
+</html>

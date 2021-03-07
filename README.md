@@ -1,2 +1,2 @@
 # ProjetoWeb
-Repo para trabahlo da materia de programação web
+Repo para trabalho da materia de programação web

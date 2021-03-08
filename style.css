@@ -267,6 +267,8 @@ a {
   height: 64px;
   background-repeat: no-repeat;
   margin: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 #linked-login {
   width: 280px;
@@ -365,4 +367,17 @@ a {
   border-style: solid;
   border-color: #0095ff;
   color: #fff;
+}
+/************************************************Spans****************************************************/
+#l1 {
+  width: 280px;
+  height: 100px;
+  padding-top: 40px;
+  font-size: 13px;
+  position: relative;
+  margin: auto;
+}
+#l1 a:link,
+#l1 a:visited {
+  color: #0095ff;
 }

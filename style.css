@@ -214,6 +214,21 @@ a {
 }
 
 @media only screen and (max-width: 900px) {
+  .bar1 {
+    margin-top: 15px;
+    margin-left: 22.72%;
+    width: 35%;
+    height: 3px;
+    background-color: rgb(151, 151, 151);
+  }
+  .bar2,
+  .bar3 {
+    margin-top: 4px;
+    margin-left: 22.72%;
+    width: 35%;
+    height: 3px;
+    background-color: rgb(151, 151, 151);
+  }
   .xmobile {
     visibility: collapse;
   }

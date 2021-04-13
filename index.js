@@ -12,6 +12,7 @@ var btn_logout = document.querySelector('#btn_logout');
 var btn_buscar = document.querySelector('#btn_buscar');
 var api_search = document.querySelector('#api_search');
 var searchcontainer = document.querySelector('#searchcontainer');
+var response;
 
 searchcontainer.addEventListener('submit', (event) => {
   event.preventDefault();
@@ -91,22 +92,37 @@ if( senha.length < 3 ){
   return true;
 })
 
+async function login_request(email,password){
+  await axios.post('https://reqres.in/api/login', {
+    email: email,
+    password: password
+  })
+  .then(function (response) {
+    if(response.status == 200)
+    alert("Voce está logado!!!");
+    localStorage.setItem("logado", true);
+    refresh();
+  })
+  .catch(function (error) {
+    alert("Credenciais inválidas!");
+    return false
+  });
+}
 
 login_btn.addEventListener('click', (event) => {
   event.preventDefault();
   var email = document.getElementById("email").value;
   var password = document.getElementById("password").value;
 
-if(email == localStorage.getItem("login") && password == localStorage.getItem("senha")){
-alert("Voce está logado!!!");
-localStorage.setItem("logado", true);
-refresh();
+if((email == localStorage.getItem("login") && password == localStorage.getItem("senha"))){
+  alert("Voce está logado!!!");
+  localStorage.setItem("logado", true);
+  refresh();
 }
 else{
-  alert("credenciais inválidas")
-return false
+  login_request(email,password)
+  return true
 }
-
 return true
 })
   

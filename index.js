@@ -30,7 +30,10 @@ btn_buscar.addEventListener('click', (event) => {
     console.log(response.data)
     alert('Moeda:\t\t\t\t'+api_search.value.toUpperCase()+'\nPreço de compra:\tR$ '+response.data.asks[0][0]+'\nPreço de venda:\t\tR$ '+response.data.bids[0][0])
   })
-
+  .catch(function (error) {
+    alert("Ticker da moeda inválido!");
+    return false
+  });
   }
   refresh();
 })

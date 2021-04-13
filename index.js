@@ -28,7 +28,7 @@ btn_buscar.addEventListener('click', (event) => {
     axios.get('https://www.mercadobitcoin.net/api/'+api_search.value+'/orderbook/')
   .then(function (response) {
     console.log(response.data)
-    alert('Moeda:\t\t\t\t'+api_search.value.toUpperCase()+'\nPreço de compra:\tR$ '+response.data.asks[0][0]+'\nPreço de venda:\t\tR$ '+response.data.bids[0][0])
+    alert('Moeda:\t\t\t\t'+api_search.value.toUpperCase()+'\nPreço de compra:\t\tR$ '+response.data.asks[0][0]+'\nPreço de venda:\t\tR$ '+response.data.bids[0][0])
   })
   .catch(function (error) {
     alert("Ticker da moeda inválido!");

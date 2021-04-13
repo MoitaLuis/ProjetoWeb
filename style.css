@@ -483,6 +483,50 @@ a {
   visibility: visible;
   z-index: 20;
 }
+
+#lbl1 {
+  margin-bottom: 5%;
+  padding-left: 41%;
+  font-size: 20px;
+}
+#btn_cad {
+  padding: 0;
+  margin-left: 5%;
+  margin-top: 5%;
+  width: 90%;
+  font-size: 25px;
+  background-color: #f48024;
+  color: #fff;
+  border-radius: 5px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #d7d7d7;
+  box-shadow: 0 1px 2px rgba(12, 13, 14, 0.5);
+  cursor: pointer;
+}
+
+.cancel {
+  padding: 0;
+  margin-left: 5%;
+  margin-top: 5%;
+  width: 90%;
+  font-size: 25px;
+  background-color: #f48024;
+  color: #fff;
+  border-radius: 5px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #d7d7d7;
+  box-shadow: 0 1px 2px rgba(12, 13, 14, 0.5);
+  cursor: pointer;
+}
+
+#btn_cad:hover {
+  background-color: #a15619;
+}
+.cancel:hover {
+  background-color: #a15619;
+}
 /*******************************************Logado*****************************************************/
 .deslogado {
   display: none;
@@ -495,4 +539,51 @@ a {
 
 .loginInfo_none {
   display: none;
+}
+
+#online {
+  flex-direction: column;
+}
+
+#lbl_logado {
+  font-size: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#btn_buscar {
+  padding: 0;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20%;
+  width: 90%;
+  font-size: 20px;
+  background-color: #f48024;
+  color: #fff;
+  border-radius: 5px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #d7d7d7;
+  box-shadow: 0 1px 2px rgba(12, 13, 14, 0.5);
+  cursor: pointer;
+}
+#btn_logout {
+  padding: 0;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15%;
+  width: 90%;
+  font-size: 20px;
+  background-color: #f48024;
+  color: #fff;
+  border-radius: 5px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #d7d7d7;
+  box-shadow: 0 1px 2px rgba(12, 13, 14, 0.5);
+  cursor: pointer;
+}
+#btn_buscar:hover,
+#btn_logout:hover {
+  background-color: #a15619;
 }

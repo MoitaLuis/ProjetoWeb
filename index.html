@@ -80,9 +80,9 @@
     <div id="login-info">
 
       <div id="online" class="deslogado">
-        <label for="">O pai ta ON</label>
-        <button id="btn_logout">O pai não quer estar ON</button>
+        <label for="" id="lbl_logado">Você está logado!</label>
         <button id="btn_buscar">Buscar</button>
+        <button id="btn_logout">Deslogar</button>
       </div>
 
       <form class="loginInfo" action="">
@@ -110,13 +110,14 @@
   <div class="modal_bg">
     <div class="modal">
 
-      <form action="">
-        <label for="">Login</label>
-        <input id="login" type="text">
-        <label for="">Senha</label>
-        <input id="senha" type="password">
-        <label for="">Repita Senha</label>
-        <input id="rt_senha" type="password">
+      <form style="height: 100%; padding: 10% 10% 0% 10%;" action="">
+        <p id="lbl1" for="">Cadastro</p>
+        <label id="lbl2" for="">Login</label>
+        <input id="login" type="text" style="margin-bottom: 8%;">
+        <label id="lbl3" for="">Senha</label>
+        <input id="senha" type="password" style="margin-bottom: 8%;">
+        <label id="lbl4" for="">Repita Senha</label>
+        <input id="rt_senha" type="password" style="margin-bottom: 8%;">
         <button id="btn_cad">Cadastrar</button>
         <button class="cancel">Cancelar</button>
       </form>

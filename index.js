@@ -12,7 +12,7 @@ var btn_logout = document.querySelector('#btn_logout');
 var btn_buscar = document.querySelector('#btn_buscar');
 var api_search = document.querySelector('#api_search');
 var searchcontainer = document.querySelector('#searchcontainer');
-var response;
+
 
 searchcontainer.addEventListener('submit', (event) => {
   event.preventDefault();

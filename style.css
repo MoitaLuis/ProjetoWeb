@@ -79,6 +79,7 @@ header {
 .inputicon {
   position: absolute;
   color: #bbc0c4;
+  cursor: pointer;
   fill: currentColor;
   right: auto;
   left: 0.4em;

@@ -9,6 +9,30 @@ var login_btn = document.querySelector('#login-button');
 var loginInfo = document.querySelector('.loginInfo');
 var online = document.querySelector('#online');
 var btn_logout = document.querySelector('#btn_logout');
+var btn_buscar = document.querySelector('#btn_buscar');
+var api_search = document.querySelector('#api_search');
+var searchcontainer = document.querySelector('#searchcontainer');
+
+searchcontainer.addEventListener('submit', (event) => {
+  event.preventDefault();
+})
+btn_buscar.addEventListener('click', (event) => {
+  event.preventDefault();
+  if(api_search.value == ""){
+    alert("Busca não pode ser vazia")
+    return false
+  }
+  else{
+    usuario=localStorage.getItem('login')
+    axios.get('https://www.mercadobitcoin.net/api/'+api_search.value+'/orderbook/')
+  .then(function (response) {
+    console.log(response.data)
+    alert('Moeda:\t\t\t\t'+api_search.value.toUpperCase()+'\nPreço de compra:\tR$ '+response.data.asks[0][0]+'\nPreço de venda:\t\tR$ '+response.data.bids[0][0])
+  })
+
+  }
+  refresh();
+})
 
 function refresh(){
 if(localStorage.getItem("logado") == "true"){

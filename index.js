@@ -101,6 +101,8 @@ async function login_request(email,password){
     password: password
   })
   .then(function (response) {
+    var token = response.data.token;
+    console.log("token enviado pela API: " + token);
     if(response.status == 200)
     alert("Voce está logado!!!");
     localStorage.setItem("logado", true);
@@ -126,9 +128,6 @@ if(password == ""){
   alert("senha inválida");
   return 0;
 }
-
-
-
 if((email == localStorage.getItem("login") && password == localStorage.getItem("senha"))){
   alert("Voce está logado!!!");
   localStorage.setItem("logado", true);

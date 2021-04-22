@@ -117,6 +117,18 @@ login_btn.addEventListener('click', (event) => {
   var email = document.getElementById("email").value;
   var password = document.getElementById("password").value;
 
+  const emailRegex = /^[a-z0-9.]+@[a-z0-9]+.[a-z]+(.[a-z]+)?$/i;
+  if(!emailRegex.test(email)){
+    alert("email inválido");
+    return 0;
+  }
+if(password == ""){
+  alert("senha inválida");
+  return 0;
+}
+
+
+
 if((email == localStorage.getItem("login") && password == localStorage.getItem("senha"))){
   alert("Voce está logado!!!");
   localStorage.setItem("logado", true);

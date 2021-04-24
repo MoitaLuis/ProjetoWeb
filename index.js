@@ -20,7 +20,9 @@ searchcontainer.addEventListener('submit', (event) => {
 btn_buscar.addEventListener('click', (event) => {
   event.preventDefault();
   if(api_search.value == ""){
-    alert("Busca não pode ser vazia")
+    var x = document.getElementById("snack1");
+    x.className = "snackbar show";
+    setTimeout(function(){ x.className = x.className.replace("snackbar show", "snackbar"); }, 3000);
     return false
   }
   else{
@@ -28,10 +30,16 @@ btn_buscar.addEventListener('click', (event) => {
     axios.get('https://www.mercadobitcoin.net/api/'+api_search.value+'/orderbook/')
   .then(function (response) {
     console.log(response.data)
-    alert('Moeda:                  '+api_search.value.toUpperCase()+'\nPreço de compra:  R$ '+response.data.asks[0][0]+'\nPreço de venda:    R$ '+response.data.bids[0][0])
+    var x = document.getElementById("snack2");
+    x.innerHTML ='Moeda: '+api_search.value.toUpperCase()+', Preço de compra: R$ '+response.data.asks[0][0]+', Preço de venda: R$ '+response.data.bids[0][0]
+    x.className = "snackbarresposta show";
+    setTimeout(function(){ x.className = x.className.replace("snackbarresposta show", "snackbarresposta"); }, 3000);
   })
   .catch(function (error) {
-    alert("Ticker da moeda inválido!");
+    console.log(error)
+    var x = document.getElementById("snack3");
+    x.className = "snackbar show";
+    setTimeout(function(){ x.className = x.className.replace("snackbar show", "snackbar"); }, 3000);
     return false
   });
   }
@@ -72,19 +80,27 @@ var rt_senha = document.getElementById("rt_senha").value;
 console.log(senha)
 
 if(login == ""){
-  alert("Login não pode ser vazio")
+  var x = document.getElementById("snack4");
+  x.className = "snackbar show";
+  setTimeout(function(){ x.className = x.className.replace("snackbar show", "snackbar"); }, 3000);
 return false
 }
 if( senha != rt_senha){
-  alert("senhas não batem")
+  var x = document.getElementById("snack5");
+  x.className = "snackbar show";
+  setTimeout(function(){ x.className = x.className.replace("snackbar show", "snackbar"); }, 3000);
     return false
 }
 if( senha == "" || rt_senha == ""){
-  alert("Senha não pode ser vazia")
+  var x = document.getElementById("snack6");
+  x.className = "snackbar show";
+  setTimeout(function(){ x.className = x.className.replace("snackbar show", "snackbar"); }, 3000);
   return false
   }
 if( senha.length < 3 ){
-  alert("Senha muito curta")
+  var x = document.getElementById("snack7");
+  x.className = "snackbar show";
+  setTimeout(function(){ x.className = x.className.replace("snackbar show", "snackbar"); }, 3000);
   return false
   }
 
@@ -104,12 +120,16 @@ async function login_request(email,password){
     var token = response.data.token;
     console.log("token enviado pela API: " + token);
     if(response.status == 200)
-    alert("Voce está logado!!!");
+    var x = document.getElementById("snack8");
+    x.className = "snackbar show";
+    setTimeout(function(){ x.className = x.className.replace("snackbar show", "snackbar"); }, 3000);
     localStorage.setItem("logado", true);
     refresh();
   })
   .catch(function (error) {
-    alert("Credenciais inválidas!");
+    var x = document.getElementById("snack9");
+    x.className = "snackbar show";
+    setTimeout(function(){ x.className = x.className.replace("snackbar show", "snackbar"); }, 3000);
     return false
   });
 }
@@ -121,15 +141,21 @@ login_btn.addEventListener('click', (event) => {
 
   const emailRegex = /^[a-z0-9.]+@[a-z0-9]+.[a-z]+(.[a-z]+)?$/i;
   if(!emailRegex.test(email)){
-    alert("email inválido");
+    var x = document.getElementById("snack10");
+    x.className = "snackbar show";
+    setTimeout(function(){ x.className = x.className.replace("snackbar show", "snackbar"); }, 3000);
     return 0;
   }
 if(password == ""){
-  alert("senha inválida");
+  var x = document.getElementById("snack11");
+  x.className = "snackbar show";
+  setTimeout(function(){ x.className = x.className.replace("snackbar show", "snackbar"); }, 3000);
   return 0;
 }
 if((email == localStorage.getItem("login") && password == localStorage.getItem("senha"))){
-  alert("Voce está logado!!!");
+  var x = document.getElementById("snack12");
+  x.className = "snackbar show";
+  setTimeout(function(){ x.className = x.className.replace("snackbar show", "snackbar"); }, 3000);
   localStorage.setItem("logado", true);
   refresh();
 }
@@ -144,7 +170,9 @@ return true
 function storage(){
   localStorage.setItem("login", login.value)
   localStorage.setItem("senha", senha.value)
-  alert("cadastrado com sucesso")
+  var x = document.getElementById("snack13");
+  x.className = "snackbar show";
+  setTimeout(function(){ x.className = x.className.replace("snackbar show", "snackbar"); }, 3000);
   return true
 }
   

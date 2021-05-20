@@ -407,7 +407,7 @@ a {
 }
 #login-info {
   width: 232px;
-  height: 184px;
+  height: 232px;
   position: relative;
   margin: auto;
   background-color: #fff;
@@ -465,6 +465,21 @@ a {
   padding: 0px;
   z-index: 15;
 }
+.modal_bg2 {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Ubuntu";
+  visibility: hidden;
+  padding: 0px;
+  z-index: 15;
+}
 
 .modal {
   background-color: white;
@@ -482,6 +497,23 @@ a {
 .modal_active {
   visibility: visible;
   z-index: 20;
+}
+.modal2 {
+  background-color: white;
+  width: 548px;
+  height: 712px;
+  top: 0;
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
+  flex-direction: column;
+  border-radius: 10px;
+  overflow: visible;
+  visibility: hidden;
+}
+.modal2_active {
+  visibility: visible;
+  z-index: 20000;
 }
 
 #lbl1 {
@@ -583,8 +615,25 @@ a {
   box-shadow: 0 1px 2px rgba(12, 13, 14, 0.5);
   cursor: pointer;
 }
+#btn_conteudo {
+  padding: 0;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15%;
+  width: 90%;
+  font-size: 20px;
+  background-color: #f48024;
+  color: #fff;
+  border-radius: 5px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #d7d7d7;
+  box-shadow: 0 1px 2px rgba(12, 13, 14, 0.5);
+  cursor: pointer;
+}
 #btn_buscar:hover,
-#btn_logout:hover {
+#btn_logout:hover,
+#btn_conteudo:hover {
   background-color: #a15619;
 }
 

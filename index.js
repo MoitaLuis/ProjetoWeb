@@ -2,14 +2,18 @@ document.getElementById("email").value = "";
 document.getElementById("login").value = "";
 const btn = document.getElementsByClassName("ins");
 var modal = document.querySelector('.modal');
+var modal2 = document.querySelector('.modal2');
 var cancel = document.querySelector('.cancel');
+var cancel2 = document.querySelector('#cancel');
 var modal_bg = document.querySelector('.modal_bg');
+var modal_bg2 = document.querySelector('.modal_bg2');
 var btn_cad = document.querySelector('#btn_cad');
 var login_btn = document.querySelector('#login-button');
 var loginInfo = document.querySelector('.loginInfo');
 var online = document.querySelector('#online');
 var btn_logout = document.querySelector('#btn_logout');
 var btn_buscar = document.querySelector('#btn_buscar');
+var btn_conteudo = document.querySelector('#btn_conteudo');
 var api_search = document.querySelector('#api_search');
 var searchcontainer = document.querySelector('#searchcontainer');
 
@@ -62,6 +66,11 @@ async function chamaPost(login,senha){
   }) 
 }
 
+btn_conteudo.addEventListener('click', (event) => {
+  event.preventDefault();
+  modal_bg2.classList.add("modal2_active")
+  modal2.classList.add("modal2_active")
+})
 
 searchcontainer.addEventListener('submit', (event) => {
   event.preventDefault();
@@ -258,8 +267,9 @@ function storage(){
 const myFunction = function(){
   modal.classList.add("modal_active")
   modal_bg.classList.add("modal_active")
-
 }
+
+
 
 for (var i = 0; i < btn.length; i++) {
   btn[i].addEventListener('click', myFunction, false);
@@ -268,4 +278,9 @@ for (var i = 0; i < btn.length; i++) {
 cancel.addEventListener('click', () => {
   modal.classList.remove("modal_active")
   modal_bg.classList.remove("modal_active")
+})
+
+cancel2.addEventListener('click', () => {
+  modal2.classList.remove("modal2_active")
+  modal_bg2.classList.remove("modal2_active")
 })

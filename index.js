@@ -14,6 +14,55 @@ var api_search = document.querySelector('#api_search');
 var searchcontainer = document.querySelector('#searchcontainer');
 
 
+async function checaEmail(login){ 
+  flag = 1
+  await axios.get('http://localhost:9090/authenticate')
+  .then(function(response)
+  {
+    for (const i in response.data) {
+      if(response.data[i].Email == login){
+        
+        flag = 0
+      }
+
+    }
+  })  
+  return flag
+}
+
+async function chamaGet(login,senha){ 
+  flag = 0
+  await axios.get('http://localhost:9090/authenticate')
+  .then(function(response)
+  {
+    for (const i in response.data) {
+      if(response.data[i].Email == login && response.data[i].Senha == senha){
+        flag = 1
+        return flag
+      }
+
+    }
+  })  
+  return flag
+}
+
+
+
+async function chamaPost(login,senha){ 
+  axios.post('http://localhost:9090/authenticate',{
+
+    Email: login,
+    Senha: senha
+
+  }).then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  }) 
+}
+
+
 searchcontainer.addEventListener('submit', (event) => {
   event.preventDefault();
 })
@@ -47,17 +96,17 @@ btn_buscar.addEventListener('click', (event) => {
 })
 
 function refresh(){
-if(localStorage.getItem("logado") == "true"){
-  online.classList.add("logado");
-  loginInfo.classList.add("loginInfo_none");
-  online.classList.remove("deslogado");
+  if(localStorage.getItem("logado") == "true"){
+    online.classList.add("logado");
+    loginInfo.classList.add("loginInfo_none");
+    online.classList.remove("deslogado");
 
-}
-else{
-  console.log("entrei")
-  online.classList.remove("logado");
-  loginInfo.classList.remove("loginInfo_none");
-}
+  }
+  else{
+    console.log("entrei")
+    online.classList.remove("logado");
+    loginInfo.classList.remove("loginInfo_none");
+  }
 }
 
 refresh();
@@ -71,70 +120,85 @@ btn_logout.addEventListener('click', (event) => {
 
 
 
-btn_cad.addEventListener('click', (event) => {
+btn_cad.addEventListener('click', async(event) => {
 event.preventDefault();
 
-var login = document.getElementById("login").value;
-var senha = document.getElementById("senha").value;
-var rt_senha = document.getElementById("rt_senha").value;
-console.log(senha)
+  var login = document.getElementById("login").value;
+  var senha = document.getElementById("senha").value;
+  var rt_senha = document.getElementById("rt_senha").value;
 
-if(login == ""){
-  var x = document.getElementById("snack4");
-  x.className = "snackbar show";
-  setTimeout(function(){ x.className = x.className.replace("snackbar show", "snackbar"); }, 3000);
-return false
-}
-if( senha != rt_senha){
-  var x = document.getElementById("snack5");
-  x.className = "snackbar show";
-  setTimeout(function(){ x.className = x.className.replace("snackbar show", "snackbar"); }, 3000);
+
+  if(login == ""){
+    var x = document.getElementById("snack4");
+    x.className = "snackbar show";
+    setTimeout(function(){ x.className = x.className.replace("snackbar show", "snackbar"); }, 3000);
+  return false
+  }
+
+  if( senha != rt_senha){
+    var x = document.getElementById("snack5");
+    x.className = "snackbar show";
+    setTimeout(function(){ x.className = x.className.replace("snackbar show", "snackbar"); }, 3000);
+      return false
+  }
+
+  if( senha == "" || rt_senha == ""){
+    var x = document.getElementById("snack6");
+    x.className = "snackbar show";
+    setTimeout(function(){ x.className = x.className.replace("snackbar show", "snackbar"); }, 3000);
     return false
-}
-if( senha == "" || rt_senha == ""){
-  var x = document.getElementById("snack6");
-  x.className = "snackbar show";
-  setTimeout(function(){ x.className = x.className.replace("snackbar show", "snackbar"); }, 3000);
-  return false
+    }
+
+  if( senha.length < 3 ){
+    var x = document.getElementById("snack7");
+    x.className = "snackbar show";
+    setTimeout(function(){ x.className = x.className.replace("snackbar show", "snackbar"); }, 3000);
+    return false
   }
-if( senha.length < 3 ){
-  var x = document.getElementById("snack7");
-  x.className = "snackbar show";
-  setTimeout(function(){ x.className = x.className.replace("snackbar show", "snackbar"); }, 3000);
-  return false
+  
+  if(!(await checaEmail(login))){
+    var x = document.getElementById("snack8");
+     x.className = "snackbar show";
+     setTimeout(function(){ x.className = x.className.replace("snackbar show", "snackbar"); }, 3000);
+    return false
   }
 
-  storage();
+  else{
+  console.log("antes do chama post")
+  
+  chamaPost(login,senha)
+
+  console.log("dentro do chama post")
   modal.classList.remove("modal_active")
   modal_bg.classList.remove("modal_active")
-  
+  }
   return true;
 })
 
-async function login_request(email,password){
-  await axios.post('https://reqres.in/api/login', {
-    email: email,
-    password: password
-  })
-  .then(function (response) {
-    var token = response.data.token;
-    console.log("token enviado pela API: " + token);
-    if(response.status == 200)
-    var x = document.getElementById("snack8");
-    x.className = "snackbar show";
-    setTimeout(function(){ x.className = x.className.replace("snackbar show", "snackbar"); }, 3000);
-    localStorage.setItem("logado", true);
-    refresh();
-  })
-  .catch(function (error) {
-    var x = document.getElementById("snack9");
-    x.className = "snackbar show";
-    setTimeout(function(){ x.className = x.className.replace("snackbar show", "snackbar"); }, 3000);
-    return false
-  });
-}
+// async function login_request(email,password){
+//   await axios.post('https://reqres.in/api/login', {
+//     email: email,
+//     password: password
+//   })
+//   .then(function (response) {
+//     var token = response.data.token;
+//     console.log("token enviado pela API: " + token);
+//     if(response.status == 200)
+//     var x = document.getElementById("snack8");
+//     x.className = "snackbar show";
+//     setTimeout(function(){ x.className = x.className.replace("snackbar show", "snackbar"); }, 3000);
+//     localStorage.setItem("logado", true);
+//     refresh();
+//   })
+//   .catch(function (error) {
+//     var x = document.getElementById("snack9");
+//     x.className = "snackbar show";
+//     setTimeout(function(){ x.className = x.className.replace("snackbar show", "snackbar"); }, 3000);
+//     return false
+//   });
+// }
 
-login_btn.addEventListener('click', (event) => {
+login_btn.addEventListener('click', async (event) => {
   event.preventDefault();
   var email = document.getElementById("email").value;
   var password = document.getElementById("password").value;
@@ -146,24 +210,37 @@ login_btn.addEventListener('click', (event) => {
     setTimeout(function(){ x.className = x.className.replace("snackbar show", "snackbar"); }, 3000);
     return 0;
   }
-if(password == ""){
-  var x = document.getElementById("snack11");
-  x.className = "snackbar show";
-  setTimeout(function(){ x.className = x.className.replace("snackbar show", "snackbar"); }, 3000);
-  return 0;
-}
-if((email == localStorage.getItem("login") && password == localStorage.getItem("senha"))){
-  var x = document.getElementById("snack12");
-  x.className = "snackbar show";
-  setTimeout(function(){ x.className = x.className.replace("snackbar show", "snackbar"); }, 3000);
-  localStorage.setItem("logado", true);
-  refresh();
-}
-else{
-  login_request(email,password)
-  return true
-}
-return true
+  if(password == ""){
+    var x = document.getElementById("snack11");
+    x.className = "snackbar show";
+    setTimeout(function(){ x.className = x.className.replace("snackbar show", "snackbar"); }, 3000);
+    return 0;
+  }
+  // if((email == localStorage.getItem("login") && password == localStorage.getItem("senha"))){
+  //   var x = document.getElementById("snack12");
+  //   x.className = "snackbar show";
+  //   setTimeout(function(){ x.className = x.className.replace("snackbar show", "snackbar"); }, 3000);
+  //   localStorage.setItem("logado", true);
+  //   refresh();
+  // }
+  
+  else{
+    if(await chamaGet(email,password)){
+    localStorage.setItem("logado", true);
+    var x = document.getElementById("snack9");
+    x.className = "snackbar show";
+    setTimeout(function(){ x.className = x.className.replace("snackbar show", "snackbar"); }, 3000);
+    refresh();
+    return true
+    }
+    else{
+      var x = document.getElementById("snack12");
+      x.className = "snackbar show";
+      setTimeout(function(){ x.className = x.className.replace("snackbar show", "snackbar"); }, 3000);
+      return false
+    }
+  }
+  
 })
   
 

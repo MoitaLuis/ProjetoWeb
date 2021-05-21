@@ -82,8 +82,8 @@
       <div id="online" class="deslogado">
         <label for="" id="lbl_logado">Você está logado!</label>
         <button id="btn_buscar">Buscar</button>
+        <button id="btn_conteudo">Postar</button>
         <button id="btn_logout">Deslogar</button>
-        <button id="btn_conteudo">Conteúdo</button>
       </div>
 
       <form class="loginInfo" action="">
@@ -126,14 +126,20 @@
   </div>
   <div class="modal_bg2">
     <div class="modal2">
-      <input id="post_input" type="text"/>
-      <button id="btn_post" class="cancel">Postar</button>
+      <p id="lbl1" for="">Cadastrar moeda</p>
+      <label id="lbl2" for="">Nome da Moeda (Ticker)</label>
+      <input id="coin_name" type="text">
+      <label id="lbl3" for="">Preço de compra (R$)</label>
+      <input id="coin_buy" type="text">
+      <label id="lbl4" for="">Preço de venda (R$)</label>
+      <input id="coin_sell" type="text">
+      <button id="coin_post" class="cancel">Postar</button>
       <button id="cancel" class="cancel">Cancelar</button>
     </div>
   </div>
   <div id="snack1" class="snackbar">Busca não pode ser vazia</div>
   <div id="snack2" class="snackbarresposta"></div>
-  <div id="snack3" class="snackbar">Ticker da moeda inválido!</div>
+  <div id="snack3" class="snackbar">Moeda não encontrada!</div>
 
   <div id="snack4" class="snackbar">Login não pode ser vazio</div>
   <div id="snack5" class="snackbar">Senhas não batem</div>
@@ -146,6 +152,8 @@
   <div id="snack11" class="snackbar">Senha inválida</div>
   <div id="snack12" class="snackbar">Login/Senha inválidos!</div>
   <div id="snack13" class="snackbar">Cadastrado com sucesso</div>
+  <div id="snack14" class="snackbar">Moeda já está cadastrada!</div>
+  <div id="snack15" class="snackbar">Moeda cadastrada com sucesso!</div>
   
 </body>
 

@@ -40,7 +40,7 @@ app.post('/authenticate', (req,res) => {
 });
 
 
-app.get('/uploads',function(req,res){
+app.get('/coins',function(req,res){
   dataSchema2.find(function(err,usuario){
    if(err){
      console.log(err)
@@ -51,9 +51,11 @@ app.get('/uploads',function(req,res){
   })
 })
 
-app.post('/uploads', (req,res) => {
+app.post('/coins', (req,res) => {
   const post = new dataSchema2({
-    Conteudo: req.body.Conteudo
+    Nome: req.body.Nome,
+    PrecoCompra: req.body.PrecoCompra,
+    PrecoVenda: req.body.PrecoVenda
   })
 
   post.save()

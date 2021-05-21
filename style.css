@@ -500,6 +500,7 @@ a {
 }
 .modal2 {
   background-color: white;
+  padding:35px;
   width: 548px;
   height: 712px;
   top: 0;
@@ -649,7 +650,7 @@ a {
   border-radius: 2px; 
   padding: 16px; 
   position: fixed; 
-  z-index: 1000;
+  z-index: 1000000;
   left: 50%; 
   bottom: 30px; 
 }

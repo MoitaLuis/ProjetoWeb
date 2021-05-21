@@ -14,6 +14,7 @@ var online = document.querySelector('#online');
 var btn_logout = document.querySelector('#btn_logout');
 var btn_buscar = document.querySelector('#btn_buscar');
 var btn_conteudo = document.querySelector('#btn_conteudo');
+var coin_post = document.querySelector('#coin_post');
 var api_search = document.querySelector('#api_search');
 var searchcontainer = document.querySelector('#searchcontainer');
 
@@ -29,6 +30,19 @@ async function checaEmail(login){
         flag = 0
       }
 
+    }
+  })  
+  return flag
+}
+async function checaMoeda(nome){ 
+  flag = 1
+  await axios.get('http://localhost:9090/coins')
+  .then(function(response)
+  {
+    for (const i in response.data) {
+      if(response.data[i].Nome == nome){
+        flag = 0
+      }
     }
   })  
   return flag
@@ -49,6 +63,20 @@ async function chamaGet(login,senha){
   })  
   return flag
 }
+async function buscaMoeda(nome){ 
+  coin = null
+  await axios.get('http://localhost:9090/coins')
+  .then(function(response)
+  {
+    for (const i in response.data) {
+      if(response.data[i].Nome == nome){
+        coin = response.data[i]
+        return coin
+      }
+    }
+  })  
+  return coin
+}
 
 
 
@@ -66,6 +94,39 @@ async function chamaPost(login,senha){
   }) 
 }
 
+async function postaMoeda(nome,compra,venda){ 
+  axios.post('http://localhost:9090/coins',{
+    Nome: nome,
+    PrecoCompra: compra,
+    PrecoVenda: venda
+  }).then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  }) 
+}
+
+coin_post.addEventListener('click', async (event) => {
+  event.preventDefault();
+  var nome = document.getElementById("coin_name").value;
+  var compra = document.getElementById("coin_buy").value;
+  var venda = document.getElementById("coin_sell").value;
+  if(!(await checaMoeda(nome))){
+    var x = document.getElementById("snack14");
+    x.className = "snackbar show";
+    setTimeout(function(){ x.className = x.className.replace("snackbar show", "snackbar"); }, 3000);
+    return false
+  }
+  else{
+    await postaMoeda(nome,compra,venda)
+    var x = document.getElementById("snack15");
+    x.className = "snackbar show";
+    setTimeout(function(){ x.className = x.className.replace("snackbar show", "snackbar"); }, 3000);
+    return true
+  }
+})
+
 btn_conteudo.addEventListener('click', (event) => {
   event.preventDefault();
   modal_bg2.classList.add("modal2_active")
@@ -75,7 +136,8 @@ btn_conteudo.addEventListener('click', (event) => {
 searchcontainer.addEventListener('submit', (event) => {
   event.preventDefault();
 })
-btn_buscar.addEventListener('click', (event) => {
+
+btn_buscar.addEventListener('click', async (event) => {
   event.preventDefault();
   if(api_search.value == ""){
     var x = document.getElementById("snack1");
@@ -84,25 +146,50 @@ btn_buscar.addEventListener('click', (event) => {
     return false
   }
   else{
-    usuario=localStorage.getItem('login')
-    axios.get('https://www.mercadobitcoin.net/api/'+api_search.value+'/orderbook/')
-  .then(function (response) {
-    console.log(response.data)
-    var x = document.getElementById("snack2");
-    x.innerHTML ='Moeda: '+api_search.value.toUpperCase()+', Preço de compra: R$ '+response.data.asks[0][0]+', Preço de venda: R$ '+response.data.bids[0][0]
-    x.className = "snackbarresposta show";
-    setTimeout(function(){ x.className = x.className.replace("snackbarresposta show", "snackbarresposta"); }, 3000);
-  })
-  .catch(function (error) {
-    console.log(error)
-    var x = document.getElementById("snack3");
-    x.className = "snackbar show";
-    setTimeout(function(){ x.className = x.className.replace("snackbar show", "snackbar"); }, 3000);
-    return false
-  });
+    response = await buscaMoeda(api_search.value)
+    console.log(response)
+    if(!response){
+      var x = document.getElementById("snack3");
+      x.className = "snackbar show";
+      setTimeout(function(){ x.className = x.className.replace("snackbar show", "snackbar"); }, 3000);
+      return false
+    }
+    else{
+      var x = document.getElementById("snack2");
+      x.innerHTML ='Moeda: '+api_search.value.toUpperCase()+', Preço de compra: R$ '+response.PrecoCompra+', Preço de venda: R$ '+response.PrecoVenda
+      x.className = "snackbarresposta show";
+      setTimeout(function(){ x.className = x.className.replace("snackbarresposta show", "snackbarresposta"); }, 3000);
+    }
   }
-  refresh();
 })
+// btn_buscar.addEventListener('click', (event) => {
+//   event.preventDefault();
+//   if(api_search.value == ""){
+//     var x = document.getElementById("snack1");
+//     x.className = "snackbar show";
+//     setTimeout(function(){ x.className = x.className.replace("snackbar show", "snackbar"); }, 3000);
+//     return false
+//   }
+//   else{
+//     usuario=localStorage.getItem('login')
+//     axios.get('https://www.mercadobitcoin.net/api/'+api_search.value+'/orderbook/')
+//   .then(function (response) {
+//     console.log(response.data)
+//     var x = document.getElementById("snack2");
+//     x.innerHTML ='Moeda: '+api_search.value.toUpperCase()+', Preço de compra: R$ '+response.data.asks[0][0]+', Preço de venda: R$ '+response.data.bids[0][0]
+//     x.className = "snackbarresposta show";
+//     setTimeout(function(){ x.className = x.className.replace("snackbarresposta show", "snackbarresposta"); }, 3000);
+//   })
+//   .catch(function (error) {
+//     console.log(error)
+//     var x = document.getElementById("snack3");
+//     x.className = "snackbar show";
+//     setTimeout(function(){ x.className = x.className.replace("snackbar show", "snackbar"); }, 3000);
+//     return false
+//   });
+//   }
+//   refresh();
+// })
 
 function refresh(){
   if(localStorage.getItem("logado") == "true"){
@@ -184,29 +271,6 @@ event.preventDefault();
   return true;
 })
 
-// async function login_request(email,password){
-//   await axios.post('https://reqres.in/api/login', {
-//     email: email,
-//     password: password
-//   })
-//   .then(function (response) {
-//     var token = response.data.token;
-//     console.log("token enviado pela API: " + token);
-//     if(response.status == 200)
-//     var x = document.getElementById("snack8");
-//     x.className = "snackbar show";
-//     setTimeout(function(){ x.className = x.className.replace("snackbar show", "snackbar"); }, 3000);
-//     localStorage.setItem("logado", true);
-//     refresh();
-//   })
-//   .catch(function (error) {
-//     var x = document.getElementById("snack9");
-//     x.className = "snackbar show";
-//     setTimeout(function(){ x.className = x.className.replace("snackbar show", "snackbar"); }, 3000);
-//     return false
-//   });
-// }
-
 login_btn.addEventListener('click', async (event) => {
   event.preventDefault();
   var email = document.getElementById("email").value;
@@ -225,13 +289,6 @@ login_btn.addEventListener('click', async (event) => {
     setTimeout(function(){ x.className = x.className.replace("snackbar show", "snackbar"); }, 3000);
     return 0;
   }
-  // if((email == localStorage.getItem("login") && password == localStorage.getItem("senha"))){
-  //   var x = document.getElementById("snack12");
-  //   x.className = "snackbar show";
-  //   setTimeout(function(){ x.className = x.className.replace("snackbar show", "snackbar"); }, 3000);
-  //   localStorage.setItem("logado", true);
-  //   refresh();
-  // }
   
   else{
     if(await chamaGet(email,password)){

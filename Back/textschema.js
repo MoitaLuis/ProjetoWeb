@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
 
-const TextSchema = mongoose.Schema({
-  Conteudo: String
+const CoinSchema = mongoose.Schema({
+  Nome: String,
+  PrecoCompra: String,
+  PrecoVenda: String
 });
 
-module.exports = mongoose.model('Textos', TextSchema);
+module.exports = mongoose.model('Moedas', CoinSchema);

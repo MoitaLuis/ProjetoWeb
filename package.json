@@ -28,7 +28,7 @@
     "url": "https://github.com/MoitaLuis/ProjetoWeb/issues"
   },
   "homepage": "https://github.com/MoitaLuis/ProjetoWeb#readme",
-  "engine": {
-    "node": "15.8.0"
+  "engines": {
+    "node": "14.16.0"
   }
 }

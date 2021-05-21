@@ -501,8 +501,8 @@ a {
 .modal2 {
   background-color: white;
   padding:35px;
-  width: 548px;
-  height: 712px;
+  width: 348px;
+  height: 512px;
   top: 0;
   display: flex;
   justify-content: space-around;

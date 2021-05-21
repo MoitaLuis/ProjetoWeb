@@ -13,7 +13,7 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node back/index.js",
+    "start": "node Back/backIndex.js",
     "dev": "nodemon ./Back/backIndex.js"
   },
   "repository": {

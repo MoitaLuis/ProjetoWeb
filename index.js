@@ -112,6 +112,12 @@ coin_post.addEventListener('click', async (event) => {
   var nome = document.getElementById("coin_name").value;
   var compra = document.getElementById("coin_buy").value;
   var venda = document.getElementById("coin_sell").value;
+  if(nome == '' || compra == '' || venda ==''){
+    var x = document.getElementById("snack16");
+    x.className = "snackbar show";
+    setTimeout(function(){ x.className = x.className.replace("snackbar show", "snackbar"); }, 3000);
+    return false
+  }
   if(!(await checaMoeda(nome))){
     var x = document.getElementById("snack14");
     x.className = "snackbar show";
@@ -123,6 +129,9 @@ coin_post.addEventListener('click', async (event) => {
     var x = document.getElementById("snack15");
     x.className = "snackbar show";
     setTimeout(function(){ x.className = x.className.replace("snackbar show", "snackbar"); }, 3000);
+    document.getElementById("coin_name").value = ''
+    document.getElementById("coin_buy").value = ''
+    document.getElementById("coin_sell").value = ''
     return true
   }
 })

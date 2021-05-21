@@ -21,7 +21,7 @@ var searchcontainer = document.querySelector('#searchcontainer');
 
 async function checaEmail(login){ 
   flag = 1
-  await axios.get('http://localhost:9090/authenticate')
+  await axios.get('https://aula-web.herokuapp.com/authenticate')
   .then(function(response)
   {
     for (const i in response.data) {
@@ -36,7 +36,7 @@ async function checaEmail(login){
 }
 async function checaMoeda(nome){ 
   flag = 1
-  await axios.get('http://localhost:9090/coins')
+  await axios.get('https://aula-web.herokuapp.com/coins')
   .then(function(response)
   {
     for (const i in response.data) {
@@ -50,7 +50,7 @@ async function checaMoeda(nome){
 
 async function chamaGet(login,senha){ 
   flag = 0
-  await axios.get('http://localhost:9090/authenticate')
+  await axios.get('https://aula-web.herokuapp.com/authenticate')
   .then(function(response)
   {
     for (const i in response.data) {
@@ -65,7 +65,7 @@ async function chamaGet(login,senha){
 }
 async function buscaMoeda(nome){ 
   coin = null
-  await axios.get('http://localhost:9090/coins')
+  await axios.get('https://aula-web.herokuapp.com/coins')
   .then(function(response)
   {
     for (const i in response.data) {
@@ -81,7 +81,7 @@ async function buscaMoeda(nome){
 
 
 async function chamaPost(login,senha){ 
-  axios.post('http://localhost:9090/authenticate',{
+  axios.post('https://aula-web.herokuapp.com/authenticate',{
 
     Email: login,
     Senha: senha
@@ -95,7 +95,7 @@ async function chamaPost(login,senha){
 }
 
 async function postaMoeda(nome,compra,venda){ 
-  axios.post('http://localhost:9090/coins',{
+  axios.post('https://aula-web.herokuapp.com/coins',{
     Nome: nome,
     PrecoCompra: compra,
     PrecoVenda: venda

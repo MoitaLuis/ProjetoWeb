@@ -72,4 +72,4 @@ mongoose.connect("mongodb+srv://admin:admin@cluster0.rknsg.mongodb.net/myFirstDa
   console.log('conectado ao DB')
 })
 
-app.listen(port, () => {console.log("server started on port" + port)});
+app.listen(process.env.PORT || port, () => {console.log("server started on port" + port)});

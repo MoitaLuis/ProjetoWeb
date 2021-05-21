@@ -73,3 +73,12 @@ mongoose.connect("mongodb+srv://admin:admin@cluster0.rknsg.mongodb.net/myFirstDa
 })
 
 app.listen(process.env.PORT || port, () => {console.log("server started on port" + port)});
+
+app.engine('html',require('ejs').renderFile)
+app.set('view engine','html')
+app.use('/public', express.static(path.join(__dirname, '../public')))
+
+
+app.get('/', (req, res) =>{
+  res.render('index');
+})

@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "cors": "^2.8.5",
+    "ejs": "^3.1.6",
     "express": "^4.17.1",
     "local-storage": "^2.0.0",
     "mongoose": "^5.12.10",
@@ -27,7 +28,7 @@
     "url": "https://github.com/MoitaLuis/ProjetoWeb/issues"
   },
   "homepage": "https://github.com/MoitaLuis/ProjetoWeb#readme",
-  "engine":{
+  "engine": {
     "node": "14.15.5"
   }
 }

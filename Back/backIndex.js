@@ -13,30 +13,45 @@ var cors = require('cors');
 app.use(bodyParser.json());
 app.use(cors());
 
-app.get('/authenticate',function(req,res){
-  dataSchema.find(function(err,usuario){
-   if(err){
-     console.log(err)
-     }  
-   else{
-     res.send(usuario)
-   }
-  })
+app.post('/authenticate',function(req,res){
+  let email = req.body.Email
+  let password = req.body.Senha
+      dataSchema.findOne({ Email: email}, function(err, user) {
+        if(err) {
+          return res.status(500).json({err : error.message});
+        } 
+        if (user && user.Senha === password){
+          return res.json(user)
+        }
+        else {
+          res.status(400).json({err : "Wrong Credentials"});
+        }              
+      });
 })
 
-app.post('/authenticate', (req,res) => {
-  const post = new dataSchema({
-    Email: req.body.Email,
-    Senha: req.body.Senha
-  })
-
-  post.save()
-    .then(data => {
-      res.json(data);
-    })
-    .catch(err => {
-      res.json({message: err});
-    });
+app.post('/register', (req,res) => {
+  dataSchema.findOne({ Email: req.body.Email}, function(err, user) {
+    if(err) {
+      return res.status(500).json({err : error.message});
+    } 
+    if (user){
+      return res.status(400).json({err: 'email already used'})
+    }
+    else{
+      const post = new dataSchema({
+        Email: req.body.Email,
+        Senha: req.body.Senha
+      })
+    
+      post.save()
+        .then(data => {
+          res.status(200).json(data);
+        })
+        .catch(err => {
+          res.status(500).json({message: err});
+        });
+    }     
+  });
 });
 
 

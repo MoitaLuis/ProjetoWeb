@@ -18,22 +18,6 @@ var coin_post = document.querySelector('#coin_post');
 var api_search = document.querySelector('#api_search');
 var searchcontainer = document.querySelector('#searchcontainer');
 
-
-async function checaEmail(login){ 
-  flag = 1
-  await axios.get('https://aula-web.herokuapp.com/authenticate')
-  .then(function(response)
-  {
-    for (const i in response.data) {
-      if(response.data[i].Email == login){
-        
-        flag = 0
-      }
-
-    }
-  })  
-  return flag
-}
 async function checaMoeda(nome){ 
   flag = 1
   await axios.get('https://aula-web.herokuapp.com/coins')
@@ -48,21 +32,6 @@ async function checaMoeda(nome){
   return flag
 }
 
-async function chamaGet(login,senha){ 
-  flag = 0
-  await axios.get('https://aula-web.herokuapp.com/authenticate')
-  .then(function(response)
-  {
-    for (const i in response.data) {
-      if(response.data[i].Email == login && response.data[i].Senha == senha){
-        flag = 1
-        return flag
-      }
-
-    }
-  })  
-  return flag
-}
 async function buscaMoeda(nome){ 
   coin = null
   await axios.get('https://aula-web.herokuapp.com/coins')
@@ -78,19 +47,25 @@ async function buscaMoeda(nome){
   return coin
 }
 
-
-
 async function chamaPost(login,senha){ 
-  axios.post('https://aula-web.herokuapp.com/authenticate',{
+  axios.post('https://aula-web.herokuapp.com/register',{
 
     Email: login,
     Senha: senha
 
   }).then(function (response) {
-    console.log(response);
+    modal.classList.remove("modal_active")
+    modal_bg.classList.remove("modal_active")
+    var x = document.getElementById("snack2");
+    x.innerHTML = "Cadastrado com sucesso."
+    x.className = "snackbarresposta show";
+    setTimeout(function(){ x.className = x.className.replace("snackbarresposta show", "snackbarresposta"); }, 3000);
   })
   .catch(function (error) {
-    console.log(error);
+    var x = document.getElementById("snack2");
+    x.innerHTML = "Email já existe"
+    x.className = "snackbarresposta show";
+    setTimeout(function(){ x.className = x.className.replace("snackbarresposta show", "snackbarresposta"); }, 3000);
   }) 
 }
 
@@ -171,34 +146,6 @@ btn_buscar.addEventListener('click', async (event) => {
     }
   }
 })
-// btn_buscar.addEventListener('click', (event) => {
-//   event.preventDefault();
-//   if(api_search.value == ""){
-//     var x = document.getElementById("snack1");
-//     x.className = "snackbar show";
-//     setTimeout(function(){ x.className = x.className.replace("snackbar show", "snackbar"); }, 3000);
-//     return false
-//   }
-//   else{
-//     usuario=localStorage.getItem('login')
-//     axios.get('https://www.mercadobitcoin.net/api/'+api_search.value+'/orderbook/')
-//   .then(function (response) {
-//     console.log(response.data)
-//     var x = document.getElementById("snack2");
-//     x.innerHTML ='Moeda: '+api_search.value.toUpperCase()+', Preço de compra: R$ '+response.data.asks[0][0]+', Preço de venda: R$ '+response.data.bids[0][0]
-//     x.className = "snackbarresposta show";
-//     setTimeout(function(){ x.className = x.className.replace("snackbarresposta show", "snackbarresposta"); }, 3000);
-//   })
-//   .catch(function (error) {
-//     console.log(error)
-//     var x = document.getElementById("snack3");
-//     x.className = "snackbar show";
-//     setTimeout(function(){ x.className = x.className.replace("snackbar show", "snackbar"); }, 3000);
-//     return false
-//   });
-//   }
-//   refresh();
-// })
 
 function refresh(){
   if(localStorage.getItem("logado") == "true"){
@@ -260,22 +207,8 @@ event.preventDefault();
     setTimeout(function(){ x.className = x.className.replace("snackbar show", "snackbar"); }, 3000);
     return false
   }
-  
-  if(!(await checaEmail(login))){
-    var x = document.getElementById("snack8");
-     x.className = "snackbar show";
-     setTimeout(function(){ x.className = x.className.replace("snackbar show", "snackbar"); }, 3000);
-    return false
-  }
-
   else{
-  console.log("antes do chama post")
-  
-  chamaPost(login,senha)
-
-  console.log("dentro do chama post")
-  modal.classList.remove("modal_active")
-  modal_bg.classList.remove("modal_active")
+    await chamaPost(login,senha)
   }
   return true;
 })
@@ -298,24 +231,21 @@ login_btn.addEventListener('click', async (event) => {
     setTimeout(function(){ x.className = x.className.replace("snackbar show", "snackbar"); }, 3000);
     return 0;
   }
-  
   else{
-    if(await chamaGet(email,password)){
-    localStorage.setItem("logado", true);
-    var x = document.getElementById("snack9");
-    x.className = "snackbar show";
-    setTimeout(function(){ x.className = x.className.replace("snackbar show", "snackbar"); }, 3000);
-    refresh();
-    return true
-    }
-    else{
-      var x = document.getElementById("snack12");
-      x.className = "snackbar show";
-      setTimeout(function(){ x.className = x.className.replace("snackbar show", "snackbar"); }, 3000);
-      return false
+    try{
+      await axios.post('https://aula-web.herokuapp.com/authenticate',{Email:email,Senha:password})
+    .then(function(){
+      localStorage.setItem("logado", true);
+      refresh();
+      return true
+    })
+    }catch{
+        var x = document.getElementById("snack2");
+        x.innerHTML = "Credenciais inválidas"
+        x.className = "snackbarresposta show";
+        setTimeout(function(){ x.className = x.className.replace("snackbarresposta show", "snackbarresposta"); }, 3000);
     }
   }
-  
 })
   
 
